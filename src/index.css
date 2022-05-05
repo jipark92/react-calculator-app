@@ -1,7 +1,10 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    font-family: 'Roboto', sans-serif;
 }
 
 .main-container {
@@ -11,7 +14,7 @@
 }
 
 .title-container {
-    height: 5vh;
+    min-height: 5vh;
     width: 100%;
     display: flex;
     justify-content: center;
@@ -32,7 +35,8 @@
 }
 
 .calculator {
-    border: 1px solid black;
+    border: 3px solid black;
+    box-shadow: 0px 0px 50px currentColor;
     border-radius: 15px;
     max-width: 350px;
     max-height: 550px;   
@@ -44,12 +48,14 @@
     width: 100%;
     display: flex;
     flex-direction: column;
+    color: white;
+    font-weight: 1000;
 }
 
 .previous-display {
     display: flex;
     justify-content: flex-end;
-    border-bottom: 1px solid black;
+    border-bottom: 2px solid black;
     padding: 0.5rem;
 }
 
@@ -69,8 +75,17 @@
     border: 1px solid black;
     font-size: 2rem;
     background-color: #198754;
+    color: white;
+    font-weight: 1000;
 }
 
-.delete-btn {
+.btns-container button:hover {
+    background-color:  rgb(171, 250, 224);
+    color:black;
+}
+
+.clear-btn {
     border-bottom-left-radius: 15px;
+    border-bottom-right-radius: 15px;
+    width: 300px;
 }
