@@ -7,8 +7,8 @@ export default function Calculator() {
     const [operandB,setOperandB] = useState("")
     const [total, setTotal] = useState("")
     //display useState
-    const [prevDisplay, setPrevDisplay] = useState(`${operandA} ${operator} ${operandB}`)
-    const [currDisplay, setCurrDisplay] = useState(`${total}`)
+    const [prevDisplay, setPrevDisplay] = useState("")
+    const [currDisplay, setCurrDisplay] = useState("")
     //render display
     useEffect(()=>{
         setPrevDisplay(`${operandA} ${operator} ${operandB}`)
