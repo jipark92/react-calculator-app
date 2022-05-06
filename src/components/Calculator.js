@@ -16,14 +16,11 @@ export default function Calculator() {
         // console.log(operator,'op')
         // console.log(operandB,"b")
         setCurrDisplay(`${total}`)
-        
     },[operandA,operator,operandB,total])
     //operands button function
     const handleOperands = (e) => {
         //prevent changing value
-        if(total){
-            return
-        }
+        if(total)return
         if(!operator){
             setOperandA(operandA=>operandA += e.target.value)
         }  else if(operator){
@@ -51,15 +48,31 @@ export default function Calculator() {
     //decimal button function
     const checkOneDecimal = (e) => {
         //prevent changing value
-        if(total){
-            return
-        }
+        if(total)return
         if(!operator){
             if(operandA.includes('.'))return
             setOperandA(operandA=>operandA += e.target.value)
         } else if(operator){
             if(operandB.includes('.'))return
             setOperandB(operandB=>operandB += e.target.value)
+        }
+    }
+    //clear button function
+    const handleClear = () => {
+        setCurrDisplay("")
+        setOperandA("")
+        setOperandB("")
+        setOperator("")
+        setPrevDisplay("")
+        setTotal("")
+    }
+    //delete button function
+    const handleDelete = () => {
+        console.log('clicked')
+        if(!operator){
+            setOperandA(operandA=>operandA.slice(0,-1))
+        } else if(operator){
+            setOperandB(operandB=>operandB.slice(0,-1))
         }
     }
 
@@ -85,10 +98,10 @@ export default function Calculator() {
                     <button onClick={handleOperator} value="*">*</button>
                     <button onClick={handleOperands} value="0">0</button>
                     <button onClick={checkOneDecimal} value=".">.</button>
-                    <button>DEL</button>
+                    <button onClick={handleDelete}>DEL</button>
                     <button onClick={handleOperator} value="/">/</button>
                     <button className='equal-btn' onClick={handleTotal}>=</button>
-                    <button className="clear-btn">CLEAR</button>
+                    <button className="clear-btn" onClick={handleClear}>CLEAR</button>
                 </div>
             </div>
         </div>
