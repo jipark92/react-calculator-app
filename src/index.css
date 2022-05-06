@@ -57,12 +57,15 @@
     justify-content: flex-end;
     border-bottom: 2px solid black;
     padding: 0.5rem;
+    height:70px
 }
 
 .current-display {
     display: flex;
     justify-content: flex-end;
     padding: 0.5rem;
+    height:70px
+
 }
 
 .btns-container {
@@ -85,9 +88,12 @@
 }
 
 .clear-btn {
-    border-bottom-left-radius: 15px;
     border-bottom-right-radius: 15px;
-    width: 300px;
+    width: 225px;
+}
+
+.equal-btn {
+    border-bottom-left-radius: 15px;
 }
 
 .about-container {
