@@ -12,14 +12,11 @@ export default function Calculator() {
     //render display
     useEffect(()=>{
         setPrevDisplay(`${operandA} ${operator} ${operandB}`)
-        // console.log(operandA,'a')
-        // console.log(operator,'op')
-        // console.log(operandB,"b")
         setCurrDisplay(`${total}`)
     },[operandA,operator,operandB,total])
     //operands button function
     const handleOperands = (e) => {
-        //prevent changing value
+        //prevent changing value after total is displayed
         if(total)return
         if(!operator){
             setOperandA(operandA=>operandA += e.target.value)
@@ -29,9 +26,16 @@ export default function Calculator() {
     }
     //operators button function
     const handleOperator = (e) => {
+        //operate total to new operandB
+        if(total){
+            setOperandA(total)
+            setOperator(operator=>operator = e.target.value)
+            setOperandB("")
+            setTotal("")
+        }
         if(!operator){
             setOperator(operator =>operator += e.target.value)
-        }
+        } 
     }
     //equal/total button function
     const handleTotal = () => {
@@ -47,7 +51,7 @@ export default function Calculator() {
     }
     //decimal button function
     const checkOneDecimal = (e) => {
-        //prevent changing value
+        //prevent changing value after total is displayed
         if(total)return
         if(!operator){
             if(operandA.includes('.'))return
@@ -68,7 +72,8 @@ export default function Calculator() {
     }
     //delete button function
     const handleDelete = () => {
-        console.log('clicked')
+        //prevent changing value after total is displayed
+        if(total)return
         if(!operator){
             setOperandA(operandA=>operandA.slice(0,-1))
         } else if(operator){

@@ -20,7 +20,7 @@ export default function About() {
                 <Accordion.Item eventKey="1">
                     <Accordion.Header>Created By?</Accordion.Header>
                     <Accordion.Body>
-                        <p>Ji Park's - <a href="https://github.com/norfkorean/react-calculator-app" target="_blank">Calculator GitHub Source</a></p>
+                        <p>Ji Park's - <a href="https://github.com/norfkorean/react-calculator-app" target="_blank" rel="noreferrer">Calculator GitHub Source</a></p>
                     </Accordion.Body>
                 </Accordion.Item>
             </Accordion>
