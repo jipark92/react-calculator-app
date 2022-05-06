@@ -1,41 +1,59 @@
 import {useState,useEffect} from 'react'
 
 export default function Calculator() {
-
+    //storage useState
     const [operandA,setOperandA] = useState("")
     const [operator,setOperator] = useState("")
     const [operandB,setOperandB] = useState("")
-
+    const [total, setTotal] = useState("")
+    //display useState
     const [prevDisplay, setPrevDisplay] = useState(`${operandA} ${operator} ${operandB}`)
-    const [currDisplay, setCurrDisplay] = useState("")
-
+    const [currDisplay, setCurrDisplay] = useState(`${total}`)
+    //render display
     useEffect(()=>{
         setPrevDisplay(`${operandA} ${operator} ${operandB}`)
-        console.log(operandA,'a')
-        console.log(operator,'op')
-        console.log(operandB,"b")
+        // console.log(operandA,'a')
+        // console.log(operator,'op')
+        // console.log(operandB,"b")
+        setCurrDisplay(`${total}`)
         
-    },[operandA,operator,operandB])
-
+    },[operandA,operator,operandB,total])
+    //operands button function
     const handleOperands = (e) => {
+        //prevent changing value
+        if(total){
+            return
+        }
         if(!operator){
             setOperandA(operandA=>operandA += e.target.value)
         }  else if(operator){
             setOperandB(operandB=>operandB += e.target.value)
-        }
+        } 
     }
-
+    //operators button function
     const handleOperator = (e) => {
         if(!operator){
             setOperator(operator =>operator += e.target.value)
         }
     }
-
+    //equal/total button function
     const handleTotal = () => {
-        console.log('clicked')
+        if(operator.includes('-')){
+            setTotal(total=>total = parseFloat(operandA) - parseFloat(operandB))
+        } else if(operator.includes('+')){
+            setTotal(total=>total = parseFloat(operandA) + parseFloat(operandB))
+        } else if(operator.includes('/')){
+            setTotal(total=>total = parseFloat(operandA) / parseFloat(operandB))
+        } else if(operator.includes('*')){
+            setTotal(total=>total = parseFloat(operandA) * parseFloat(operandB))
+        }
     }
-
+    //decimal button function
     const checkOneDecimal = (e) => {
+        //prevent changing value
+        if(total){
+            return
+        }
         if(!operator){
             if(operandA.includes('.'))return
             setOperandA(operandA=>operandA += e.target.value)
@@ -44,7 +62,6 @@ export default function Calculator() {
             setOperandB(operandB=>operandB += e.target.value)
         }
     }
-
 
     return (
         <div className="calculator-container">
