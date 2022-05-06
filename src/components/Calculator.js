@@ -6,24 +6,45 @@ export default function Calculator() {
     const [operator,setOperator] = useState("")
     const [operandB,setOperandB] = useState("")
 
-
-    const [prevDisplay, setPrevDisplay] = useState("")
+    const [prevDisplay, setPrevDisplay] = useState(`${operandA} ${operator} ${operandB}`)
     const [currDisplay, setCurrDisplay] = useState("")
 
     useEffect(()=>{
-        setPrevDisplay(operandA)
-        console.log(operandA)
-    },[operandA])
+        setPrevDisplay(`${operandA} ${operator} ${operandB}`)
+        console.log(operandA,'a')
+        console.log(operator,'op')
+        console.log(operandB,"b")
+        
+    },[operandA,operator,operandB])
 
     const handleOperands = (e) => {
         if(!operator){
             setOperandA(operandA=>operandA += e.target.value)
+        }  else if(operator){
+            setOperandB(operandB=>operandB += e.target.value)
         }
     }
 
     const handleOperator = (e) => {
-
+        if(!operator){
+            setOperator(operator =>operator += e.target.value)
+        }
     }
+
+    const handleTotal = () => {
+        console.log('clicked')
+    }
+
+    const checkOneDecimal = (e) => {
+        if(!operator){
+            if(operandA.includes('.'))return
+            setOperandA(operandA=>operandA += e.target.value)
+        } else if(operator){
+            if(operandB.includes('.'))return
+            setOperandB(operandB=>operandB += e.target.value)
+        }
+    }
+
 
     return (
         <div className="calculator-container">
@@ -46,10 +67,10 @@ export default function Calculator() {
                     <button onClick={handleOperands} value="9">9</button>
                     <button onClick={handleOperator} value="*">*</button>
                     <button onClick={handleOperands} value="0">0</button>
-                    <button onClick={handleOperands} value=".">.</button>
+                    <button onClick={checkOneDecimal} value=".">.</button>
                     <button>DEL</button>
                     <button onClick={handleOperator} value="/">/</button>
-                    <button className='equal-btn'>=</button>
+                    <button className='equal-btn' onClick={handleTotal}>=</button>
                     <button className="clear-btn">CLEAR</button>
                 </div>
             </div>
