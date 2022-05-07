@@ -34,7 +34,7 @@ export default function Calculator() {
             setTotal("")
         }
         if(!operator){
-            setOperator(operator =>operator += e.target.value)
+            setOperator(operator =>operator = e.target.value)
         } 
     }
     //equal/total button function
